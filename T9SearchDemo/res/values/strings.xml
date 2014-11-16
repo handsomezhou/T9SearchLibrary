@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">T9SearchDemo</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">T9Search</string>
+    <string name="display_keyboard">显示键盘</string>
+    <string name="hide_keyboard">隐藏键盘</string>
+    <string name="t9_keyboard_input_prompt">输入号码或拼音</string>
+    <string name="no_match_search_result">无相关搜索结果</string>
+    <string name="loading_contacts">正在加载联系人</string>
 
 </resources>
