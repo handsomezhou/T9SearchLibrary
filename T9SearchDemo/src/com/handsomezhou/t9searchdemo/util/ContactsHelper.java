@@ -200,19 +200,13 @@ public class ContactsHelper {
 				mSearchContacts.add(mBaseContacts.get(i));
 				continue;
 			}else{
-				if(mBaseContacts.get(i).getName().contains(search)){//search by org name;
-					mBaseContacts.get(i).setSearchByType(SearchByType.SearchByName);
+				if(mBaseContacts.get(i).getPhoneNumber().contains(search)){	//search by phone number
+					mBaseContacts.get(i).setSearchByType(SearchByType.SearchByPhoneNumber);
 					mBaseContacts.get(i).setMatchKeywords(search);
 					mSearchContacts.add(mBaseContacts.get(i));
 					continue;
-				}else{
-					if(mBaseContacts.get(i).getPhoneNumber().contains(search)){	//search by phone number
-						mBaseContacts.get(i).setSearchByType(SearchByType.SearchByPhoneNumber);
-						mBaseContacts.get(i).setMatchKeywords(search);
-						mSearchContacts.add(mBaseContacts.get(i));
-						continue;
-					}
 				}
+		
 			}
 		}
 		

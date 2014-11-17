@@ -3,7 +3,7 @@ package com.t9search.model;
  * @description
  * as a single T9 Pinyin units
  * for example:
- * 	"好"		 ===> mPinyin="hao";mNumber="426";
+ * 	"hao"		 ===> mPinyin="hao";mNumber="426";
  *  "???hao" ===> mPinyin="???hao";mNumber="???426"; 
  * @author handsomezhou
  * @date 2014-11-12
