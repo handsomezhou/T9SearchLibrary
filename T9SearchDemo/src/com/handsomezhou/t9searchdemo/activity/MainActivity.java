@@ -34,7 +34,6 @@ import com.t9search.model.*;
 public class MainActivity extends Activity implements OnT9TelephoneDialpadView,
 		OnContactsLoad{
 	private static final String TAG = "MainActivity";
-	private static final int DIAL_INPUT_INIT_CAPACITY = 128;
 	private Context mContext;
 	private ListView mContactsLv;
 	private View mLoadContactsView;
@@ -43,7 +42,6 @@ public class MainActivity extends Activity implements OnT9TelephoneDialpadView,
 	private Button mDialpadOperationBtn;
 
 	private ContactsAdapter mContactsAdapter;
-	private StringBuffer mDialInputStr;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +90,6 @@ public class MainActivity extends Activity implements OnT9TelephoneDialpadView,
 				R.layout.contacts_list_item, ContactsHelper.getInstance()
 						.getSearchContacts());
 		mContactsLv.setAdapter(mContactsAdapter);
-		mDialInputStr = new StringBuffer(DIAL_INPUT_INIT_CAPACITY);
 	}
 
 	private void initListener() {
@@ -141,8 +138,6 @@ public class MainActivity extends Activity implements OnT9TelephoneDialpadView,
 
 	@Override
 	public void onDialInputTextChanged(String curCharacter) {
-		mDialInputStr.delete(0, mDialInputStr.length());
-		mDialInputStr.append(curCharacter);
 		
 		if(TextUtils.isEmpty(curCharacter)){
 			ContactsHelper.getInstance().parseT9InputSearchContacts(null);
