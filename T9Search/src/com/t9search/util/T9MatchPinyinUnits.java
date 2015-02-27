@@ -1,14 +1,30 @@
+/*
+ * Copyright  [handsomezhou] 2014 The T9 search Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.t9search.util;
 
 import java.util.List;
 
 import com.t9search.model.PinyinUnit;
-import com.t9search.model.T9PinyinUnit;
+import com.t9search.model.PinyinBaseUnit;
 
 public class T9MatchPinyinUnits {
 	//private static final String TAG="T9MatchPinyinUnits";
 	/**
-	 * @description match Pinyin Units
+	 * Match Pinyin Units
 	 * @param pinyinUnits		
 	 * @param baseData   		the original string which be parsed to PinyinUnit
 	 * @param search			search key words
@@ -30,7 +46,7 @@ public class T9MatchPinyinUnits {
 		StringBuffer searchBuffer=new StringBuffer();
 		for(int i=0; i<pinyinUnitsLength; i++){
 			//pyUnit=pinyinUnits.get(i);
-			//for(int j=0; j<pyUnit.getT9PinyinUnitIndex().size(); j++){
+			//for(int j=0; j<pyUnit.getPinyinBaseUnitIndex().size(); j++){
 			
 			int j=0;
 			chineseKeyWord.delete(0, chineseKeyWord.length());
@@ -72,44 +88,44 @@ public class T9MatchPinyinUnits {
 		}
 		PinyinUnit pyUnit=pinyinUnits.get(pinyinUnitIndex);
 		
-		if(t9PinyinUnitIndex>=pyUnit.getT9PinyinUnitIndex().size()){
+		if(t9PinyinUnitIndex>=pyUnit.getPinyinBaseUnitIndex().size()){
 			return false;
 		}
 		
-		T9PinyinUnit t9PinyinUnit=pyUnit.getT9PinyinUnitIndex().get(t9PinyinUnitIndex);
+		PinyinBaseUnit pinyinBaseUnit=pyUnit.getPinyinBaseUnitIndex().get(t9PinyinUnitIndex);
 		
 		
 		
 		if(pyUnit.isPinyin()){
 			
-			if(search.startsWith(String.valueOf(t9PinyinUnit.getNumber().charAt(0)))){// match pinyin first character
+			if(search.startsWith(String.valueOf(pinyinBaseUnit.getNumber().charAt(0)))){// match pinyin first character
 				searchBuffer.delete(0,1);//delete the match character
 				chineseKeyWord.append(baseData.charAt(pyUnit.getStartPosition()));
 				boolean found=findPinyinUnits(pinyinUnits, pinyinUnitIndex+1, 0, baseData, searchBuffer, chineseKeyWord);
 				if(true==found){
 					return true; 
 				}else{
-					searchBuffer.insert(0, t9PinyinUnit.getNumber().charAt(0));
+					searchBuffer.insert(0, pinyinBaseUnit.getNumber().charAt(0));
 					chineseKeyWord.deleteCharAt(chineseKeyWord.length()-1);
 				}
 				
 			}
 			
-			if(t9PinyinUnit.getNumber().startsWith(search)){
+			if(pinyinBaseUnit.getNumber().startsWith(search)){
 				//The string of "search" is the string of t9PinyinUnit.getNumber() of a subset. means match success.
 				chineseKeyWord.append(baseData.charAt(pyUnit.getStartPosition()));
 				searchBuffer.delete(0, searchBuffer.length());	
 				return true;
 				
-			}else if(search.startsWith(t9PinyinUnit.getNumber())){ //match quanpin  success
+			}else if(search.startsWith(pinyinBaseUnit.getNumber())){ //match quanpin  success
 				//The string of t9PinyinUnit.getNumber() is the string of "search" of a subset.
-				searchBuffer.delete(0, t9PinyinUnit.getNumber().length());
+				searchBuffer.delete(0, pinyinBaseUnit.getNumber().length());
 				chineseKeyWord.append(baseData.charAt(pyUnit.getStartPosition()));
 				boolean found=findPinyinUnits(pinyinUnits, pinyinUnitIndex+1, 0, baseData, searchBuffer, chineseKeyWord);
 				if(true==found){
 					return true;
 				}else{
-					searchBuffer.insert(0, t9PinyinUnit.getNumber());
+					searchBuffer.insert(0, pinyinBaseUnit.getNumber());
 					chineseKeyWord.deleteCharAt(chineseKeyWord.length()-1);
 				}
 			}else{ //mismatch
@@ -121,37 +137,37 @@ public class T9MatchPinyinUnits {
 			
 		}else{ //non-pure Pinyin
 			
-			if(t9PinyinUnit.getNumber().startsWith(search)){
+			if(pinyinBaseUnit.getNumber().startsWith(search)){
 				//The string of "search" is the string of t9PinyinUnit.getNumber() of a subset.
 				int startIndex=0; 
 				chineseKeyWord.append(baseData.substring(startIndex+pyUnit.getStartPosition(),startIndex+pyUnit.getStartPosition()+ search.length()));
 				searchBuffer.delete(0, searchBuffer.length());
 				return true;
-			}else if(search.startsWith(t9PinyinUnit.getNumber())){ //match all non-pure pinyin 
+			}else if(search.startsWith(pinyinBaseUnit.getNumber())){ //match all non-pure pinyin 
 				//The string of t9PinyinUnit.getNumber() is the string of "search" of a subset.
 				int startIndex=0; 
-				searchBuffer.delete(0, t9PinyinUnit.getNumber().length());
-				chineseKeyWord.append(baseData.substring(startIndex+pyUnit.getStartPosition(),startIndex+pyUnit.getStartPosition()+ t9PinyinUnit.getNumber().length()));
+				searchBuffer.delete(0, pinyinBaseUnit.getNumber().length());
+				chineseKeyWord.append(baseData.substring(startIndex+pyUnit.getStartPosition(),startIndex+pyUnit.getStartPosition()+ pinyinBaseUnit.getNumber().length()));
 				boolean found=findPinyinUnits(pinyinUnits, pinyinUnitIndex+1, 0, baseData, searchBuffer, chineseKeyWord);
 				if(true==found){
 					return true;
 				}else{
-					searchBuffer.insert(0, t9PinyinUnit.getNumber());
-					chineseKeyWord.delete(chineseKeyWord.length()-t9PinyinUnit.getNumber().length(), chineseKeyWord.length());
+					searchBuffer.insert(0, pinyinBaseUnit.getNumber());
+					chineseKeyWord.delete(chineseKeyWord.length()-pinyinBaseUnit.getNumber().length(), chineseKeyWord.length());
 				}
 			}else if((chineseKeyWord.length()<=0)){
-				if(t9PinyinUnit.getNumber().contains(search)){
-					int index=t9PinyinUnit.getNumber().indexOf(search);
+				if(pinyinBaseUnit.getNumber().contains(search)){
+					int index=pinyinBaseUnit.getNumber().indexOf(search);
 					chineseKeyWord.append(baseData.substring(index+pyUnit.getStartPosition(),index+pyUnit.getStartPosition()+ search.length()));
 					searchBuffer.delete(0, searchBuffer.length());
 					return true;
 				}else{
-//					 match case:[Non-Chinese characters]+[Chinese characters]
-//					 for example:baseData="Tony测试"; match this case:"onycs"<===>"66927" 
+					// match case:[Non-Chinese characters]+[Chinese characters]
+					//for example:baseData="Tony测试"; match this case:"onycs"<===>"66927" 
 					//start [Non-Chinese characters]+[Chinese characters]
-					int numLength=t9PinyinUnit.getNumber().length();
+					int numLength=pinyinBaseUnit.getNumber().length();
 					for(int i=0; i<numLength; i++){
-						String subStr=t9PinyinUnit.getNumber().substring(i);
+						String subStr=pinyinBaseUnit.getNumber().substring(i);
 						if(search.startsWith(subStr)){
 							searchBuffer.delete(0, subStr.length());
 							chineseKeyWord.append(baseData.substring(i+pyUnit.getStartPosition(), i+pyUnit.getStartPosition()+subStr.length()));
@@ -159,7 +175,7 @@ public class T9MatchPinyinUnits {
 							if(true==found){
 								return true;
 							}else{
-								searchBuffer.insert(0, t9PinyinUnit.getNumber().substring(i));
+								searchBuffer.insert(0, pinyinBaseUnit.getNumber().substring(i));
 								chineseKeyWord.delete(chineseKeyWord.length()-subStr.length(), chineseKeyWord.length());
 							}
 							
@@ -167,14 +183,14 @@ public class T9MatchPinyinUnits {
 					}
 					//end [Non-Chinese characters]+[Chinese characters]
 					
-					//in fact,if pyUnit.isPinyin()==false, pyUnit.getT9PinyinUnitIndex().size()==1. The function of findPinyinUnits() will return false.
+					//in fact,if pyUnit.isPinyin()==false, pyUnit.getPinyinBaseUnitIndex().size()==1. The function of findPinyinUnits() will return false.
 					boolean found=findPinyinUnits(pinyinUnits, pinyinUnitIndex, t9PinyinUnitIndex+1, baseData, searchBuffer, chineseKeyWord);
 					if(true==found){
 						return true;
 					}
 				}
 			}else { //mismatch
-				//in fact,if pyUnit.isPinyin()==false, pyUnit.getT9PinyinUnitIndex().size()==1.  The function of findPinyinUnits() will return false.
+				//in fact,if pyUnit.isPinyin()==false, pyUnit.getPinyinBaseUnitIndex().size()==1.  The function of findPinyinUnits() will return false.
 				boolean found=findPinyinUnits(pinyinUnits, pinyinUnitIndex, t9PinyinUnitIndex+1, baseData, searchBuffer, chineseKeyWord);
 				if(true==found){
 					return true;

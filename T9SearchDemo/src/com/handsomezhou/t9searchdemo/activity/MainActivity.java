@@ -167,7 +167,7 @@ public class MainActivity extends Activity implements OnT9TelephoneDialpadView,
 			for(int j=0; j<pinyinUnitCount; j++){
 				PinyinUnit pyUnit=pinyinUnit.get(j);
 				Log.i(TAG,"j="+j+",isPinyin["+pyUnit.isPinyin()+"],startPosition=["+pyUnit.getStartPosition()+"]");
-				List<T9PinyinUnit> stringIndex=pyUnit.getT9PinyinUnitIndex();
+				List<PinyinBaseUnit> stringIndex=pyUnit.getPinyinBaseUnitIndex();
 				int stringIndexLength=stringIndex.size();
 				for(int k=0; k<stringIndexLength; k++){
 					Log.i(TAG,"k="+k+"["+stringIndex.get(k).getPinyin()+"]+["+stringIndex.get(k).getNumber()+"]" );
