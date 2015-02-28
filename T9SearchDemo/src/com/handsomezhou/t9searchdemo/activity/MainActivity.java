@@ -1,14 +1,11 @@
 package com.handsomezhou.t9searchdemo.activity;
 
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -22,10 +19,9 @@ import com.handsomezhou.t9searchdemo.adapter.ContactsAdapter;
 import com.handsomezhou.t9searchdemo.model.Contacts;
 import com.handsomezhou.t9searchdemo.util.ContactsHelper;
 import com.handsomezhou.t9searchdemo.util.ContactsHelper.OnContactsLoad;
+import com.handsomezhou.t9searchdemo.util.ViewUtil;
 import com.handsomezhou.t9searchdemo.view.T9TelephoneDialpadView;
 import com.handsomezhou.t9searchdemo.view.T9TelephoneDialpadView.OnT9TelephoneDialpadView;
-
-import com.t9search.model.*;
 /**
  * @description Main activity
  * @author handsomezhou
@@ -74,9 +70,9 @@ public class MainActivity extends Activity implements OnT9TelephoneDialpadView,
 		mDialpadOperationBtn = (Button) findViewById(R.id.dialpad_operation_btn);
 		mDialpadOperationBtn.setText(R.string.hide_keyboard);
 
-		showView(mContactsLv);
-		hideView(mLoadContactsView);
-		hideView(mSearchResultPromptTv);
+		ViewUtil.showView(mContactsLv);
+		ViewUtil.hideView(mLoadContactsView);
+		ViewUtil.hideView(mSearchResultPromptTv);
 
 	}
 
@@ -84,7 +80,7 @@ public class MainActivity extends Activity implements OnT9TelephoneDialpadView,
 		ContactsHelper.getInstance().setOnContactsLoad(this);
 		boolean startLoad = ContactsHelper.getInstance().startLoadContacts();
 		if (true == startLoad) {
-			showView(mLoadContactsView);
+			ViewUtil.showView(mLoadContactsView);
 		}
 		mContactsAdapter = new ContactsAdapter(mContext,
 				R.layout.contacts_list_item, ContactsHelper.getInstance()
@@ -155,9 +151,9 @@ public class MainActivity extends Activity implements OnT9TelephoneDialpadView,
 	
 	@Override
 	public void onContactsLoadSuccess() {
-		hideView(mLoadContactsView);
+		ViewUtil.hideView(mLoadContactsView);
 		updateContactsList();
-		
+		/*
 		int contactsCount=ContactsHelper.getInstance().getBaseContacts().size();
 		for(int i=0; i<contactsCount; i++){
 			String name=ContactsHelper.getInstance().getBaseContacts().get(i).getName();
@@ -174,45 +170,15 @@ public class MainActivity extends Activity implements OnT9TelephoneDialpadView,
 				}
 				
 			}
-			
-			
 		}
+		*/
 	}
 
 	@Override
 	public void onContactsLoadFailed() {
 
-		hideView(mLoadContactsView);
-		showView(mContactsLv);
-	}
-
-	private void hideView(View view) {
-		if (null == view) {
-			return;
-		}
-		if (View.GONE != view.getVisibility()) {
-			view.setVisibility(View.GONE);
-		}
-
-		return;
-	}
-
-	private int getViewVisibility(View view) {
-		if (null == view) {
-			return View.GONE;
-		}
-
-		return view.getVisibility();
-	}
-
-	private void showView(View view) {
-		if (null == view) {
-			return;
-		}
-
-		if (View.VISIBLE != view.getVisibility()) {
-			view.setVisibility(View.VISIBLE);
-		}
+		ViewUtil.hideView(mLoadContactsView);
+		ViewUtil.showView(mContactsLv);
 	}
 
 	private void updateContactsList(){
@@ -224,12 +190,12 @@ public class MainActivity extends Activity implements OnT9TelephoneDialpadView,
 		if(null!=contactsAdapter){
 			contactsAdapter.notifyDataSetChanged();
 			if(contactsAdapter.getCount()>0){
-				showView(mContactsLv);
-				hideView(mSearchResultPromptTv);
+				ViewUtil.showView(mContactsLv);
+				ViewUtil.hideView(mSearchResultPromptTv);
 				
 			}else{
-				hideView(mContactsLv);
-				showView(mSearchResultPromptTv);
+				ViewUtil.hideView(mContactsLv);
+				ViewUtil.showView(mSearchResultPromptTv);
 				
 			}
 		}
