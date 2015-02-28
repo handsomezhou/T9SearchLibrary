@@ -52,7 +52,7 @@ Using
 	import com.t9search.util.*;
 	import com.t9search.model.*;
 	
-	Reference T9searchDemo Project.
+	Reference T9SearchDemo Project.
 	
 License 
 ---------------
