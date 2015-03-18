@@ -1,6 +1,7 @@
 package com.handsomezhou.t9searchdemo.util;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import android.content.Context;
@@ -196,6 +197,9 @@ public class ContactsHelper {
 			if(true==T9MatchPinyinUnits.matchPinyinUnits(pinyinUnits,name,search,chineseKeyWord)){//search by NamePinyinUnits;
 				mBaseContacts.get(i).setSearchByType(SearchByType.SearchByName);
 				mBaseContacts.get(i).setMatchKeywords(chineseKeyWord.toString());
+				mBaseContacts.get(i).setMatchStartIndex(mBaseContacts.get(i).getName().indexOf(chineseKeyWord.toString()));
+				mBaseContacts.get(i).setMatchLength(mBaseContacts.get(i).getMatchKeywords().length());
+				//Log.i(TAG, "["+mBaseContacts.get(i).getName()+"]"+"["+mBaseContacts.get(i).getMatchKeywords().toString()+"]"+"["+mBaseContacts.get(i).getMatchStartIndex()+"]"+"["+mBaseContacts.get(i).getMatchLength()+"]");
 				chineseKeyWord.delete(0, chineseKeyWord.length());
 				mSearchContacts.add(mBaseContacts.get(i));
 				continue;
@@ -203,7 +207,10 @@ public class ContactsHelper {
 				if(mBaseContacts.get(i).getPhoneNumber().contains(search)){	//search by phone number
 					mBaseContacts.get(i).setSearchByType(SearchByType.SearchByPhoneNumber);
 					mBaseContacts.get(i).setMatchKeywords(search);
+					mBaseContacts.get(i).setMatchStartIndex(mBaseContacts.get(i).getPhoneNumber().indexOf(search));
+					mBaseContacts.get(i).setMatchLength(search.length());
 					mSearchContacts.add(mBaseContacts.get(i));
+					//Log.i(TAG, "["+mBaseContacts.get(i).getPhoneNumber()+"]"+"["+mBaseContacts.get(i).getMatchKeywords().toString()+"]"+"["+mBaseContacts.get(i).getMatchStartIndex()+"]"+"["+mBaseContacts.get(i).getMatchLength()+"]");
 					continue;
 				}
 		
@@ -217,6 +224,8 @@ public class ContactsHelper {
 			}else{
 				
 			}
+		}else{
+			Collections.sort(mSearchContacts, Contacts.mSearchComparator);
 		}
 		
 	}
