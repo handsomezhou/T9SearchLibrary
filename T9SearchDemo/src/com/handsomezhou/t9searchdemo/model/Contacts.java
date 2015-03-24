@@ -1,22 +1,18 @@
 package com.handsomezhou.t9searchdemo.model;
 
-import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
 
-import com.t9search.model.*;
+import com.t9search.model.PinyinUnit;
 
-public class Contacts {
+public class Contacts extends BaseContacts{
 	public enum SearchByType{
 		SearchByNull,
 		SearchByName,
 		SearchByPhoneNumber,
 	}
 	
-	private String mName;			
-	private String mPhoneNumber;
 	private List<PinyinUnit> mNamePinyinUnits;	//save the mName converted to Pinyin characters.
 	
 	private SearchByType mSearchByType;			//Used to save the type of search
@@ -25,15 +21,15 @@ public class Contacts {
 	private int mMatchLength;					//the match length of mMatchKeywords in original string(name or phoneNumber).
 	
 	public Contacts(String name, String phoneNumber) {
-		//super();
-		mName = name;
-		mPhoneNumber = phoneNumber;
+		super();
+	    setName(name);
+	    setPhoneNumber(phoneNumber);
 		setNamePinyinUnits(new ArrayList<PinyinUnit>());
 		setSearchByType(SearchByType.SearchByNull);
 		mMatchKeywords=new StringBuffer();
 		mMatchKeywords.delete(0, mMatchKeywords.length());
-		mMatchStartIndex=-1;
-		mMatchLength=0;
+		setMatchStartIndex(-1);
+		setMatchLength(0);
 	}
 
 	public static Comparator<Contacts> mSearchComparator = new Comparator<Contacts>() {
@@ -45,28 +41,12 @@ public class Contacts {
 		}
 	};
 	
-	public String getName() {
-		return mName;
-	}
-	
-	public void setName(String name) {
-		mName = name;
-	}
-	
 	public List<PinyinUnit> getNamePinyinUnits() {
 		return mNamePinyinUnits;
 	}
 
 	public void setNamePinyinUnits(List<PinyinUnit> namePinyinUnits) {
 		mNamePinyinUnits = namePinyinUnits;
-	}
-	
-	public String getPhoneNumber() {
-		return mPhoneNumber;
-	}
-	
-	public void setPhoneNumber(String phoneNumber) {
-		mPhoneNumber = phoneNumber;
 	}
 
 	public SearchByType getSearchByType() {
