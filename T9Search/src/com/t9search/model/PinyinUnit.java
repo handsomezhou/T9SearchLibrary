@@ -19,8 +19,6 @@ package com.t9search.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.t9search.model.PinyinBaseUnit;;
-
 /**
  * PinyinUnit as a base data structure to save the string that Chinese characters  converted to Pinyin characters.
  * for example:
@@ -61,7 +59,7 @@ import com.t9search.model.PinyinBaseUnit;;
  * 
  */
 
-public class PinyinUnit {
+public class PinyinUnit implements Cloneable{
 	//Whether Pinyin
 	private boolean mPinyin;
 	private int mStartPosition; //save starting index position that the variables in the original string. 
@@ -100,4 +98,17 @@ public class PinyinUnit {
 	public void setStringIndex(List<PinyinBaseUnit> stringIndex) {
 		mPinyinBaseUnitIndex = stringIndex;
 	}
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		PinyinUnit obj=(PinyinUnit)super.clone();
+		
+		obj.mPinyinBaseUnitIndex=new ArrayList<PinyinBaseUnit>();
+		for(PinyinBaseUnit pbu:mPinyinBaseUnitIndex){
+			obj.mPinyinBaseUnitIndex.add((PinyinBaseUnit)pbu.clone());
+		}
+		
+		return obj;
+	}
+
 }

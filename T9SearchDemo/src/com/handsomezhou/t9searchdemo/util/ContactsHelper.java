@@ -190,17 +190,13 @@ public class ContactsHelper {
 		 * 2:Search by phone number		('0'~'9','*','#')
 		 */
 		for(int i=0; i<contactsCount; i++){
-			
-			List<PinyinUnit> pinyinUnits=mBaseContacts.get(i).getNamePinyinUnits();
-			StringBuffer chineseKeyWord=new StringBuffer();//In order to get Chinese KeyWords.Of course it's maybe not Chinese characters.
-			String name=mBaseContacts.get(i).getName();
-			if(true==T9MatchPinyinUnits.matchPinyinUnits(pinyinUnits,name,search,chineseKeyWord)){//search by NamePinyinUnits;
+			PinyinSearchUnit pinyinSearchUnit=mBaseContacts.get(i).getNamePinyinSearchUnits();
+		
+			if(true==T9Util.match(pinyinSearchUnit, search)){//search by name;
 				mBaseContacts.get(i).setSearchByType(SearchByType.SearchByName);
-				mBaseContacts.get(i).setMatchKeywords(chineseKeyWord.toString());
-				mBaseContacts.get(i).setMatchStartIndex(mBaseContacts.get(i).getName().indexOf(chineseKeyWord.toString()));
+				mBaseContacts.get(i).setMatchKeywords(pinyinSearchUnit.getMatchKeyWord().toString());
+				mBaseContacts.get(i).setMatchStartIndex(mBaseContacts.get(i).getName().indexOf(pinyinSearchUnit.getMatchKeyWord().toString()));
 				mBaseContacts.get(i).setMatchLength(mBaseContacts.get(i).getMatchKeywords().length());
-				//Log.i(TAG, "["+mBaseContacts.get(i).getName()+"]"+"["+mBaseContacts.get(i).getMatchKeywords().toString()+"]"+"["+mBaseContacts.get(i).getMatchStartIndex()+"]"+"["+mBaseContacts.get(i).getMatchLength()+"]");
-				chineseKeyWord.delete(0, chineseKeyWord.length());
 				mSearchContacts.add(mBaseContacts.get(i));
 				continue;
 			}else{
@@ -309,7 +305,7 @@ public class ContactsHelper {
 								.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 				
 				cs = new Contacts(displayName, phoneNumber);
-				PinyinUtil.chineseStringToPinyinUnit(cs.getName(), cs.getNamePinyinUnits());
+				PinyinUtil.parse(cs.getNamePinyinSearchUnits());
 				
 				contacts.add(cs);
 			}

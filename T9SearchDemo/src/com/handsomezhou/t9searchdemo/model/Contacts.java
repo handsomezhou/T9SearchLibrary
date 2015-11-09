@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import com.t9search.model.PinyinSearchUnit;
 import com.t9search.model.PinyinUnit;
 
 public class Contacts extends BaseContacts{
@@ -13,8 +14,7 @@ public class Contacts extends BaseContacts{
 		SearchByPhoneNumber,
 	}
 	
-	private List<PinyinUnit> mNamePinyinUnits;	//save the mName converted to Pinyin characters.
-	
+	private PinyinSearchUnit mNamePinyinSearchUnits; //save the mName converted to Pinyin characters.
 	private SearchByType mSearchByType;			//Used to save the type of search
 	private StringBuffer mMatchKeywords;		//Used to save the type of Match Keywords.(name or phoneNumber)
 	private int mMatchStartIndex;				//the match start  position of mMatchKeywords in original string(name or phoneNumber).
@@ -24,7 +24,7 @@ public class Contacts extends BaseContacts{
 		super();
 	    setName(name);
 	    setPhoneNumber(phoneNumber);
-		setNamePinyinUnits(new ArrayList<PinyinUnit>());
+		setNamePinyinSearchUnits(new PinyinSearchUnit(name));
 		setSearchByType(SearchByType.SearchByNull);
 		mMatchKeywords=new StringBuffer();
 		mMatchKeywords.delete(0, mMatchKeywords.length());
@@ -41,12 +41,13 @@ public class Contacts extends BaseContacts{
 		}
 	};
 	
-	public List<PinyinUnit> getNamePinyinUnits() {
-		return mNamePinyinUnits;
+
+	public PinyinSearchUnit getNamePinyinSearchUnits() {
+		return mNamePinyinSearchUnits;
 	}
 
-	public void setNamePinyinUnits(List<PinyinUnit> namePinyinUnits) {
-		mNamePinyinUnits = namePinyinUnits;
+	public void setNamePinyinSearchUnits(PinyinSearchUnit namePinyinSearchUnits) {
+		mNamePinyinSearchUnits = namePinyinSearchUnits;
 	}
 
 	public SearchByType getSearchByType() {
