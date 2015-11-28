@@ -36,20 +36,19 @@ API
 	converted to Pinyin characters.
 	
 ### Function:
-	public static void chineseStringToPinyinUnit(String chineseString,List<PinyinUnit> pinyinUnit);
-	public static boolean matchPinyinUnits(final List<PinyinUnit> pinyinUnits,
-	final String baseData, String search,StringBuffer chineseKeyWord);
-	public static String getSortKey(List<PinyinUnit> pinyinUnit)
-	public static String getFirstLetter(List<PinyinUnit> pinyinUnit);
-	public static String getFirstCharacter(List<PinyinUnit> pinyinUnit);
-	public static boolean isKanji(char chr)
+	public static void parse(PinyinSearchUnit pinyinSearchUnit);
+	public static boolean match(PinyinSearchUnit pinyinSearchUnit,String search);
+	public static String getSortKey(PinyinSearchUnit pinyinSearchUnit);
+	public static String getFirstLetter(PinyinSearchUnit pinyinSearchUnit);
+	public static String getFirstCharacter(PinyinSearchUnit pinyinSearchUnit);
+	public static boolean isKanji(char chr);
 
 ### Function call:
-	PinyinUtil.chineseStringToPinyinUnit(...);
-	T9MatchPinyinUnits.matchPinyinUnits(...);
+	PinyinUtil.parse(...);
+	T9Util.match(...);
 	PinyinUtil.getSortKey(...);
+	PinyinUtil.getFirstLetter(...);
 	PinyinUtil.getFirstCharacter(...);
-	PinyinUtil.getFirstLetter();
 	PinyinUtil.isKanji(...);
 	
 Usage
@@ -62,7 +61,7 @@ Usage
 	The first step:  Data parsing  (ps:Must init baseData of PinyinSearchUnit before parse)
 	    * (PinyinUtil.parse(...))
     The second step: Data matching 
-	    * T9Util.match(...)
+	    * (T9Util.match(...))
 	
 	For details, please see project T9SearchDemo.
 	
