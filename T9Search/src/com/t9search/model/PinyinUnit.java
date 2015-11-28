@@ -95,10 +95,10 @@ public class PinyinUnit implements Cloneable{
 		return mPinyinBaseUnitIndex;
 	}
 
-	public void setStringIndex(List<PinyinBaseUnit> stringIndex) {
-		mPinyinBaseUnitIndex = stringIndex;
+	public void setPinyinBaseUnitIndex(List<PinyinBaseUnit> pinyinBaseUnitIndex) {
+		mPinyinBaseUnitIndex = pinyinBaseUnitIndex;
 	}
-	
+
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		PinyinUnit obj=(PinyinUnit)super.clone();

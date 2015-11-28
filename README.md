@@ -2,14 +2,25 @@ T9SearchLibrary
 ===================
 	The library of T9Search,a Java Library Which provide data analysis methods, 
 	data matching method and so on for T9 pinyin search.
+	
+	T9Search = PinyinSearch - QwertySearch
 
-Related introduction
+**If you're looking for other versions search project, you can find all of them at the following links:**
+
+Java(Android):
+[T9Search](https://github.com/handsomezhou/T9SearchLibrary)
+[QwertySearch](https://github.com/handsomezhou/QwertySearchLibrary)
+[PinyinSearch](https://github.com/handsomezhou/PinyinSearchLibrary)
+
+
+Features
 ---------------
-1.[Android Pinyin search contacts analysis and implementation](http://blog.csdn.net/zjqyjg/article/details/41360769)
-
-2.[Android T9 search contacts analysis and implementation](http://blog.csdn.net/zjqyjg/article/details/41182911)
-
-3.[Android Qwerty search contacts analysis and implementation](http://blog.csdn.net/zjqyjg/article/details/41318907)
+ * Support T9 search
+ * Support Chinese character search
+ * Support Pinyin search
+ * Support English search
+ * Support polyphone search
+ * Support highlight
 
 Depend
 ---------------
@@ -41,18 +52,19 @@ API
 	PinyinUtil.getFirstLetter();
 	PinyinUtil.isKanji(...);
 	
-Using
+Usage
 ---------------	
-### T9 search similar demo:
-<img src="https://github.com/handsomezhou/PinyinSearchLibrary/blob/master/external_res/image/T9_search.png"/>
-
-	
 ### Function call in detail:
-	Import packages when use T9search Library(Dependent on pinyin4j-x.x.x.jar):
+	Import packages when use t9search Library(Dependent on pinyin4j-x.x.x.jar):
 	import com.t9search.util.*;
 	import com.t9search.model.*;
 	
-	Reference T9SearchDemo Project.
+	The first step:  Data parsing  (ps:Must init baseData of PinyinSearchUnit before parse)
+	    * (PinyinUtil.parse(...))
+    The second step: Data matching 
+	    * T9Util.match(...)
+	
+	For details, please see project T9SearchDemo.
 	
 License 
 ---------------
