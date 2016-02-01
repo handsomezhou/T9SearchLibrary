@@ -6,5 +6,17 @@
     <dimen name="dialpad_icon_width">32dp</dimen>
     <dimen name="dialpad_margin_right">12dp</dimen>
     <dimen name="dialpad_margin_left">12dp</dimen>
+    <dimen name="bottom_tab_height">54dp</dimen>
+    <dimen name="list_item_height">54dp</dimen>
+    <dimen name="padding">4dp</dimen>
+    <dimen name="padding_left">4dp</dimen>
+    <dimen name="padding_right">4dp</dimen>
+    <dimen name="padding_top">4dp</dimen>
+    <dimen name="padding_bottom">4dp</dimen>
+    <dimen name="margin">4dp</dimen>
+    <dimen name="margin_left">4dp</dimen>
+    <dimen name="margin_right">4dp</dimen>
+    <dimen name="margin_top">4dp</dimen>
+    <dimen name="margin_bottom">4dp</dimen>
 
 </resources>

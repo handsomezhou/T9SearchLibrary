@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:minHeight="@dimen/list_item_height"
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/name_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left" />
+        android:gravity="left"
+        android:padding="@dimen/padding" />
 
     <TextView
         android:id="@+id/phone_number_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/name_text_view"
-        android:gravity="left" />
+        android:gravity="left"
+        android:padding="@dimen/padding" />
 
-</RelativeLayout>
+</LinearLayout>

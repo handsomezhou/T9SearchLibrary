@@ -37,7 +37,7 @@ public class ContactsAdapter extends ArrayAdapter<Contacts> {
 			viewHolder = new ViewHolder();
 			viewHolder.mNameTv = (TextView) view
 					.findViewById(R.id.name_text_view);
-			viewHolder.mPhoneNumber = (TextView) view
+			viewHolder.mPhoneNumberTv = (TextView) view
 					.findViewById(R.id.phone_number_text_view);
 			view.setTag(viewHolder);
 		} else {
@@ -48,18 +48,18 @@ public class ContactsAdapter extends ArrayAdapter<Contacts> {
 		switch (contact.getSearchByType()) {
 		case SearchByNull:
 			ViewUtil.showTextNormal(viewHolder.mNameTv, contact.getName());
-			ViewUtil.showTextNormal(viewHolder.mPhoneNumber,
+			ViewUtil.showTextNormal(viewHolder.mPhoneNumberTv,
 					contact.getPhoneNumber());
 			break;
 		case SearchByPhoneNumber:
 			ViewUtil.showTextNormal(viewHolder.mNameTv, contact.getName());
-			ViewUtil.showTextHighlight(viewHolder.mPhoneNumber, contact
+			ViewUtil.showTextHighlight(viewHolder.mPhoneNumberTv, contact
 					.getPhoneNumber(), contact.getMatchKeywords().toString());
 			break;
 		case SearchByName:
 			ViewUtil.showTextHighlight(viewHolder.mNameTv, contact.getName(),
 					contact.getMatchKeywords().toString());
-			ViewUtil.showTextNormal(viewHolder.mPhoneNumber,
+			ViewUtil.showTextNormal(viewHolder.mPhoneNumberTv,
 					contact.getPhoneNumber());
 			break;
 		default:
@@ -70,6 +70,6 @@ public class ContactsAdapter extends ArrayAdapter<Contacts> {
 
 	private class ViewHolder {
 		TextView mNameTv;
-		TextView mPhoneNumber;
+		TextView mPhoneNumberTv;
 	}
 }
