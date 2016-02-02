@@ -12,6 +12,9 @@ Java(Android):
 [T9Search](https://github.com/handsomezhou/T9SearchLibrary)
 [QwertySearch](https://github.com/handsomezhou/QwertySearchLibrary)
 
+c plus plus(Qt):
+[PinyinSearch](https://github.com/handsomezhou/pinyinsearch4cpp)
+
 
 Features
 ---------------
@@ -28,7 +31,11 @@ Depend
 	Pinyin4j is a popular Java library supporting convertion between Chinese characters 
 	and most popular Pinyin systems. The output format of pinyin could be customized.
 [http://pinyin4j.sourceforge.net/](http://pinyin4j.sourceforge.net/)
-	
+
+Renderings
+---------------
+<img src="https://github.com/handsomezhou/T9SearchLibrary/blob/master/external_res/image/T9Search.gif"/>
+
 API
 ---------------
 ### Data structure:PinyinUnit
@@ -64,6 +71,22 @@ Usage
 	    * (T9Util.match(...))
 	
 	For details, please see project T9SearchDemo.
+
+### Support Library
+[t9search.jar](https://github.com/handsomezhou/T9SearchLibrary/blob/master/external_res/jar/t9search.jar?raw=true)
+
+[pinyin4j-2.5.0.jar](https://github.com/handsomezhou/T9SearchLibrary/blob/master/external_res/jar/pinyin4j-2.5.0.jar?raw=true)
+	 
+### Demo Apk
+[T9SearchDemo](https://github.com/handsomezhou/T9SearchLibrary/blob/master/external_res/bin/T9SearchDemo.apk?raw=true)
+
+Algorithm introduction
+---------------
+1.[Pinyin search contacts analysis and implementation](http://blog.csdn.net/zjqyjg/article/details/41360769)
+
+2.[T9 search contacts analysis and implementation](http://blog.csdn.net/zjqyjg/article/details/41182911)
+
+3.[Qwerty search contacts analysis and implementation](http://blog.csdn.net/zjqyjg/article/details/41318907)
 	
 License 
 ---------------
