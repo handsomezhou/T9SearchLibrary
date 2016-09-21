@@ -19,7 +19,7 @@ package com.t9search.util;
 public class CommonUtil {
 
 	public static boolean isEmpty(String value){
-		boolean empty=true;
+        boolean empty=true;
         
         if((null==value)||(value.length()<=0)){
             empty=true;
