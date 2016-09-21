@@ -233,14 +233,14 @@ public class ContactsHelper {
 		mContext=T9SearchApplication.getContextObject();
 		setContactsChanged(true);
 		if (null == mBaseContacts) {
-			mBaseContacts = new ArrayList<>();
+			mBaseContacts = new ArrayList<Contacts>();
 
 		} else {
 			mBaseContacts.clear();
 		}
 		
 		if(null==mSearchContacts){
-			mSearchContacts=new ArrayList<>();
+			mSearchContacts=new ArrayList<Contacts>();
 		}else{
 			mSearchContacts.clear();
 		}
