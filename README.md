@@ -30,7 +30,7 @@ Depend
 ### The library of pinyin4j: 
 	Pinyin4j is a popular Java library supporting convertion between Chinese characters 
 	and most popular Pinyin systems. The output format of pinyin could be customized.
-[http://pinyin4j.sourceforge.net/](http://pinyin4j.sourceforge.net/)
+[original pinyin4j](http://pinyin4j.sourceforge.net/) or [light pinyin4j](https://github.com/handsomezhou/Pinyin4j/)
 
 Renderings
 ---------------
@@ -72,11 +72,11 @@ Usage
 	
 	For details, please see project T9SearchDemo.
 
-### Support Library
+### JAR download
 [t9search.jar](https://github.com/handsomezhou/T9SearchLibrary/blob/master/external_res/jar/t9search.jar?raw=true)
 
-[pinyin4j-2.5.0.jar](https://github.com/handsomezhou/T9SearchLibrary/blob/master/external_res/jar/pinyin4j-2.5.0.jar?raw=true)
-	 
+original [pinyin4j-2.5.0.jar](https://github.com/handsomezhou/T9SearchLibrary/blob/master/external_res/jar/pinyin4j-2.5.0.jar?raw=true) Or light [pinyin4j.jar](https://github.com/handsomezhou/T9SearchLibrary/blob/master/external_res/jar/pinyin4j.jar?raw=true)(recommend)
+
 ### Demo Apk
 [T9SearchDemo](https://github.com/handsomezhou/T9SearchLibrary/blob/master/external_res/bin/T9SearchDemo.apk?raw=true)
 
