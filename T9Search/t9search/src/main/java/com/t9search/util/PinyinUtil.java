@@ -77,7 +77,7 @@ public class PinyinUtil {
 				nonPinyinString.append(ch);
 			} else {
 				if (false == lastChineseCharacters) {
-					// add continuous non-kanji characters to PinyinUnit
+					// add continuous non-ChineseCharacter characters to PinyinUnit
 					originalString = nonPinyinString.toString();
 					String[] str = { nonPinyinString.toString() };
 					addPinyinUnit(pinyinSearchUnit.getPinyinUnits(), pyUnit, false, originalString,str, startPosition);
@@ -95,7 +95,7 @@ public class PinyinUtil {
 		}
 
 		if (false == lastChineseCharacters) {
-			// add continuous non-kanji characters to PinyinUnit
+			// add continuous non-ChineseCharacter characters to PinyinUnit
 			originalString = nonPinyinString.toString();
 			String[] str = { nonPinyinString.toString() };
 			addPinyinUnit(pinyinSearchUnit.getPinyinUnits(), pyUnit, false, originalString, str,startPosition);
@@ -211,12 +211,12 @@ public class PinyinUtil {
 	}
 
 	/**
-	 * judge chr is kanji
+	 * judge chr is Chinese Character
 	 * 
 	 * @param chr
-	 * @return Is kanji return true,otherwise return false.
+	 * @return Is Chinese Character return true,otherwise return false.
 	 */
-	public static boolean isKanji(char chr){
+	public static boolean isChineseCharacter(char chr){
 		String[] pinyinStr = null;
 		try {
 			pinyinStr = PinyinHelper.toHanyuPinyinStringArray(chr, format);
